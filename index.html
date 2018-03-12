@@ -1,0 +1,306 @@
+<html>
+<head>
+<title>Western Humanities</title>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<style>
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+.area {
+    fill: lightsteelblue;
+}
+circle:hover{
+    stroke:black;
+    stroke-width: 2px;
+    opacity: 0.5;
+}
+</style>
+</head>
+<body>
+
+<script>
+//set Scales and paths
+var x = d3.scaleLinear().range([0, 1350]),
+    x2 = d3.scaleLinear().range([0, 1350]),
+    y = d3.scaleLinear().range([650, 5]),
+    y2 = d3.scaleLinear().range([160, 100]);
+
+var xAxis = d3.axisBottom(x).tickFormat(d3.format("d")),
+    xAxis2 = d3.axisBottom(x2).tickFormat(d3.format("d")).ticks(20),
+    yAxis = d3.axisLeft(y);
+
+var brush = d3.brushX()
+    .extent([[0, 90], [1350, 160]])
+    .on("brush", select);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", 1800)
+    .attr("height", 800);
+
+svg.append("defs").append("clipPath")
+    .attr("id", "clip")
+  .append("rect")
+    .attr("width", 1355)
+    .attr("height", 800);
+
+var focus = svg.append("g")
+    .attr("class", "focus")
+    .attr("transform", "translate(" + 50 + "," + 20 + ")");
+
+var context = svg.append("g")
+    .attr("class", "context")
+    .attr("transform", "translate(" + 50 + "," + 610 + ")");
+
+//Figure Info Text
+svg.append("text")
+    .attr("id", "FigureName")
+    .attr("x", 1450)
+    .attr("y", 600)
+    .text("Name:")
+    .style("font-size", "14pt");
+
+svg.append("text")
+    .attr("id", "BirthCountry")
+    .attr("x", 1450)
+    .attr("y", 620)
+    .text("Country:")
+    .style("font-size", "14pt");
+
+svg.append("text")
+    .attr("id", "Inventory")
+    .attr("x", 1450)
+    .attr("y", 640)
+    .text("Field: ")
+    .style("font-size", "14pt");
+    
+svg.append("text")
+    .attr("id", "Index")
+    .attr("x", 1450)
+    .attr("y", 660)
+    .text("Significance Rating: ")
+    .style("font-size", "14pt");
+    
+svg.append("text")
+    .attr("id", "Year")
+    .attr("x", 1450)
+    .attr("y", 680)
+    .text("Floruit: ")
+    .style("font-size", "14pt");
+    
+//primary scatter plot    
+d3.tsv("HumanitiesEurope.tsv", function(error, data) {
+    //set scale domains
+    x.domain([-700, 1950]);
+    y.domain([0, 100]);
+    x2.domain(x.domain());
+    y2.domain(y.domain());
+
+//add era paths
+var archaicGreece = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .1)
+    .attr('id', 'archaicGreece');
+
+var classicalAntiquity = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .05)
+    .attr('id', 'classicalAntiquity');
+    
+var darkAges = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .1)
+    .attr('id', 'darkAges');
+    
+var highMiddleAges = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .05)
+    .attr('id', 'highMiddleAges');
+    
+var renaissance = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .1)
+    .attr('id', 'renaissance');
+
+var ageOfDiscovery = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .05)
+    .attr('id', 'ageOfDiscovery');
+
+var industrialRevolution = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .1)
+    .attr('id', 'industrialRevolution');
+
+var modernEra = focus.append("path")
+    .attr("clip-path", "url(#clip)")
+    .style("opacity", .05)
+    .attr('id', 'modernEra');
+    
+// add figures to main chart
+ var dots = focus.append("g");
+    dots.attr("clip-path", "url(#clip)");
+    dots.selectAll("dot")
+        .data(data)
+        .enter().append("circle")
+        .attr('class', 'dot')
+        .attr("r", 5)
+        .style("opacity", .5)
+        .style("fill", function(d){
+            if(d.Inventory == "Literature"){
+                return 'Blue';
+            }
+            else if(d.Inventory == "Philosophy"){
+                return 'Red';
+            }
+            else if(d.Inventory == "Art"){
+                return 'Green';
+            }
+            else if(d.Inventory == "Music"){
+                return 'Orange';
+            }
+        })
+        .attr("cx", function(d) { return x(d.Fl); })
+        .attr("cy", function(d) { return y(d.Index); })
+        .on("mouseover", function (d) {
+			svg.select("#FigureName").text("Name: " + d.Name);
+            svg.select("#BirthCountry").text("Country: " + d.BirthCountry)
+            svg.select("#Inventory").text("Field: " + d.Inventory);
+            svg.select("#Index").text("Significance Rating: " + d.Index);
+            svg.select("#Year").text("Floruit: " + d.Fl);
+		})
+    
+
+    
+focus.append("g")
+      .attr("class", "xAxis")
+      .attr("transform", "translate(0," + 650 + ")")
+      .call(xAxis);
+
+focus.append("g")
+      .attr("class", "yAxis")
+      .call(yAxis);
+      
+focus.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50)
+      .attr("x", -285)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Significance");  
+    
+    for(i = 1; i < 11; i++){
+        focus.append("line")
+        .attr("x1", x(-701))
+        .attr("y1", y(i*10))
+        .attr("x2", x(1950))
+        .attr("y2", y(i*10))
+        .style("opacity", 0.3)
+        .style("stroke", "gray");
+    }
+      
+svg.append("text")             
+      .attr("transform",
+            "translate(725,800)")
+      .style("text-anchor", "middle")
+      .text("Year");
+        
+context.append("g")
+      .attr("class", "xAxis")
+      .attr("transform", "translate(0," + 160 + ")")
+      .call(xAxis2);
+
+
+context.append("g")
+      .attr("class", "brush")
+      .call(brush)
+      .call(brush.move, x.range());
+});
+
+//area chart for brush
+d3.tsv("FigureCount.tsv", function(error, data) {
+    if (error) throw error;
+    x.domain([-700, 1950]);
+    y.domain([0, 357]);
+    x2.domain(x.domain());
+    y2.domain(y.domain());
+    
+    var trendline = d3.line()
+        .x(function(d) {return x(d.Year); })
+        .y(function(d) {return y2(d.FigureCount); });
+    
+    var area = d3.area()
+        .x(function(d) { return x(d.Year); })
+        .y0(160)
+        .y1(function(d) { return y2(d.FigureCount); });
+    
+    context.append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", trendline);
+    
+    context.append("path")
+      .datum(data)
+      .attr("class", "area")
+      .attr("d", area);
+});
+
+//redraw everything on selection
+function select() {
+    var selection = d3.event.selection;
+    x.domain(selection.map(x2.invert, x2));
+    
+    //rescale eras
+    focus.select("#archaicGreece")
+        .attr("d", "M" + x(-700) + " " + y(100) +
+        "L" + x(-700) + " " + y(0) +
+        "L" + x(-480) + " " + y(0) +
+        "L" + x(-480) + " " + y(100));
+    focus.select("#classicalAntiquity")
+        .attr("d", "M" + x(-480) + " " + y(100) +
+        "L" + x(-480) + " " + y(0) +
+        "L" + x(476) + " " + y(0) +
+        "L" + x(476) + " " + y(100));
+    focus.select("#darkAges")
+        .attr("d", "M" + x(476) + " " + y(100) +
+        "L" + x(476) + " " + y(0) +
+        "L" + x(1066) + " " + y(0) +
+        "L" + x(1066) + " " + y(100));
+    focus.select("#highMiddleAges")
+        .attr("d", "M" + x(1066) + " " + y(100) +
+        "L" + x(1066) + " " + y(0) +
+        "L" + x(1300) + " " + y(0) +
+        "L" + x(1300) + " " + y(100));
+    focus.select("#renaissance")
+        .attr("d", "M" + x(1300) + " " + y(100) +
+        "L" + x(1300) + " " + y(0) +
+        "L" + x(1600) + " " + y(0) +
+        "L" + x(1600) + " " + y(100));
+    focus.select("#ageOfDiscovery")
+        .attr("d", "M" + x(1600) + " " + y(100) +
+        "L" + x(1600) + " " + y(0) +
+        "L" + x(1770) + " " + y(0) +
+        "L" + x(1770) + " " + y(100));
+    focus.select("#industrialRevolution")
+        .attr("d", "M" + x(1770) + " " + y(100) +
+        "L" + x(1770) + " " + y(0) +
+        "L" + x(1870) + " " + y(0) +
+        "L" + x(1870) + " " + y(100));
+    focus.select("#modernEra")
+        .attr("d", "M" + x(1870) + " " + y(100) +
+        "L" + x(1870) + " " + y(0) +
+        "L" + x(1950) + " " + y(0) +
+        "L" + x(1950) + " " + y(100));
+    
+    //rescale figures
+    focus.selectAll(".dot")
+        .attr("cx", function(d) { return x(d.Fl); })
+        .attr("cy", function(d) { return y(d.Index); });
+    
+    //rescale axis
+    focus.select(".xAxis").call(xAxis);
+}
+</script>
+</body>
+</html>
