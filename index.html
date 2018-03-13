@@ -20,7 +20,6 @@ circle:hover{
 </style>
 </head>
 <body>
-
 <script>
 //set Scales and paths
 var x = d3.scaleLinear().range([0, 1350]),
@@ -38,7 +37,7 @@ var brush = d3.brushX()
 
 var svg = d3.select("body").append("svg")
     .attr("width", 1800)
-    .attr("height", 800);
+    .attr("height", 900);
 
 svg.append("defs").append("clipPath")
     .attr("id", "clip")
@@ -48,16 +47,12 @@ svg.append("defs").append("clipPath")
 
 var focus = svg.append("g")
     .attr("class", "focus")
-    .attr("transform", "translate(" + 50 + "," + 20 + ")");
+    .attr("transform", "translate(" + 50 + "," + 100 + ")");
 
 var context = svg.append("g")
     .attr("class", "context")
-    .attr("transform", "translate(" + 50 + "," + 610 + ")");
+    .attr("transform", "translate(" + 50 + "," + 710 + ")");
 
-// tooltip
-var div = d3.select("body").append("div")	
-    .attr("class", "tooltip")				
-    .style("opacity", 0);
 
 //Figure Info Text
 // changed y to -20 so it does not appear on load
@@ -69,7 +64,8 @@ svg.append("text")
     .attr("y", -20)
     .text("Name:")
     .attr("font-family", "sans-serif")
-    .style("font-size", "14pt");
+    .style("font-size", "14pt")
+    .style("font-weight", "bold");
 
 svg.append("text")
     .attr("id", "BirthCountry")
@@ -78,7 +74,8 @@ svg.append("text")
     .attr("y", -20)
     .text("Country:")
     .attr("font-family", "sans-serif")
-    .style("font-size", "14pt");
+    .style("font-size", "14pt")
+    .style("font-weight", "bold");
 
 svg.append("text")
     .attr("id", "Inventory")
@@ -87,7 +84,8 @@ svg.append("text")
     .attr("y", -20)
     .text("Field: ")
     .attr("font-family", "sans-serif")
-    .style("font-size", "14pt");
+    .style("font-size", "14pt")
+    .style("font-weight", "bold");
     
 svg.append("text")
     .attr("id", "Index")
@@ -96,7 +94,8 @@ svg.append("text")
     .attr("y", -20)
     .text("Significance Rating: ")
     .attr("font-family", "sans-serif")
-    .style("font-size", "14pt");
+    .style("font-size", "14pt")
+    .style("font-weight", "bold");
     
 svg.append("text")
     .attr("id", "Year")
@@ -105,7 +104,8 @@ svg.append("text")
     .attr("y", -20)
     .text("Floruit: ")
     .attr("font-family", "sans-serif")
-    .style("font-size", "14pt");
+    .style("font-size", "14pt")
+    .style("font-weight", "bold");
     
 //primary scatter plot    
 d3.tsv("HumanitiesEurope.tsv", function(error, data) {
@@ -291,7 +291,13 @@ var dots = focus.append("g");
 			svg.select("#FigureName").text("Name: " + d.Name)
                 .attr("font-family", "sans-serif")
                 .attr("x", x(d.Fl) + 50)
-                .attr("y", y(d.Index) - 90)
+                .attr("y", function() {
+                    if(d.Index == 100) {
+                        return (y(d.Index) + 120);
+                    } else {
+                        return (y(d.Index) + 10);
+                    }
+                })
                 .style("opacity", .5)
                 .style("fill", function(){
                     if(d.Inventory == "Literature"){
@@ -310,7 +316,13 @@ var dots = focus.append("g");
             svg.select("#BirthCountry").text("Country: " + d.BirthCountry)
                 .attr("font-family", "sans-serif")
                 .attr("x", x(d.Fl) + 50)
-                .attr("y", y(d.Index) - 70)
+                .attr("y", function() {
+                    if(d.Index == 100) {
+                        return (y(d.Index) + 140);
+                    } else {
+                        return (y(d.Index) + 30);
+                    }
+                })
                 .style("opacity", .5)
                 .style("fill", function(){
                     if(d.Inventory == "Literature"){
@@ -329,7 +341,13 @@ var dots = focus.append("g");
             svg.select("#Inventory").text("Field: " + d.Inventory)
             .attr("font-family", "sans-serif")
                 .attr("x", x(d.Fl) + 50)
-                .attr("y", y(d.Index) - 50)
+                .attr("y", function() {
+                    if(d.Index == 100) {
+                        return (y(d.Index) + 160);
+                    } else {
+                        return (y(d.Index) + 50);
+                    }
+                })
                 .style("opacity", .5)
                 .style("fill", function(){
                     if(d.Inventory == "Literature"){
@@ -348,7 +366,13 @@ var dots = focus.append("g");
             svg.select("#Index").text("Significance Rating: " + d.Index)
                 .attr("font-family", "sans-serif")
                 .attr("x", x(d.Fl) + 50)
-                .attr("y", y(d.Index) - 30)
+                .attr("y", function() {
+                    if(d.Index == 100) {
+                        return (y(d.Index) + 180);
+                    } else {
+                        return (y(d.Index) + 70);
+                    }
+                })
                 .style("opacity", .5)
                 .style("fill", function(){
                     if(d.Inventory == "Literature"){
@@ -367,7 +391,13 @@ var dots = focus.append("g");
             svg.select("#Year").text("Floruit: " + d.Fl)
                 .attr("font-family", "sans-serif")
                 .attr("x", x(d.Fl) + 50)
-                .attr("y", y(d.Index) - 10)
+                .attr("y", function() {
+                    if(d.Index == 100) {
+                        return (y(d.Index) + 200);
+                    } else {
+                        return (y(d.Index) + 90);
+                    }
+                })
                 .style("opacity", .5)
                 .style("fill", function(){
                     if(d.Inventory == "Literature"){
@@ -412,11 +442,18 @@ focus.append("g")
 focus.append("g")
       .attr("class", "yAxis")
       .call(yAxis);
+    
+focus.append("text")
+    .attr("x", -30)
+    .attr("y", -40)
+    .attr("font-family", "sans-serif")
+    .style("font-size", 40)
+    .text("How Have Famous Figures Shaped Eras of History?");
       
 focus.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", -50)
-      .attr("x", -285)
+      .attr("x", -330)
       .attr("dy", "1em")
       .attr("font-family", "sans-serif")
       .style("text-anchor", "middle")
@@ -434,7 +471,7 @@ focus.append("text")
       
 svg.append("text")             
       .attr("transform",
-            "translate(725,800)")
+            "translate(725,790)")
       .style("text-anchor", "middle")
       .attr("font-family", "sans-serif")
       .text("Year");
