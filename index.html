@@ -140,16 +140,48 @@ var darkAges = focus.append("path")
     .attr("clip-path", "url(#clip)")
     .style("opacity", .1)
     .attr('id', 'darkAges');
+
+var darkAgesText = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'darkAgesText')
+    .text("Dark Ages")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
     
 var highMiddleAges = focus.append("path")
     .attr("clip-path", "url(#clip)")
     .style("opacity", .05)
     .attr('id', 'highMiddleAges');
+
+var highMiddleAgesText1 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'highMiddleAgesText1')
+    .text("High Middle")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
+var highMiddleAgesText2 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'highMiddleAgesText2')
+    .text("Ages")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
     
 var renaissance = focus.append("path")
     .attr("clip-path", "url(#clip)")
     .style("opacity", .1)
     .attr('id', 'renaissance');
+
+var renaissanceText = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'renaissanceText')
+    .text("Reinaissance")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
 
 var ageOfDiscovery = focus.append("path")
     .attr("clip-path", "url(#clip)")
@@ -307,16 +339,32 @@ function select() {
         "L" + x(476) + " " + y(0) +
         "L" + x(1066) + " " + y(0) +
         "L" + x(1066) + " " + y(100));
+    focus.select("#darkAgesText")
+        .attr("x", x(771))
+        .attr("y", 44)
+        .attr("text-anchor", "middle");
     focus.select("#highMiddleAges")
         .attr("d", "M" + x(1066) + " " + y(100) +
         "L" + x(1066) + " " + y(0) +
         "L" + x(1300) + " " + y(0) +
         "L" + x(1300) + " " + y(100));
+    focus.select("#highMiddleAgesText1")
+        .attr("x", x(1183))
+        .attr("y", 34)
+        .attr("text-anchor", "middle");
+    focus.select("#highMiddleAgesText2")
+        .attr("x", x(1183))
+        .attr("y", 54)
+        .attr("text-anchor", "middle");
     focus.select("#renaissance")
         .attr("d", "M" + x(1300) + " " + y(100) +
         "L" + x(1300) + " " + y(0) +
         "L" + x(1600) + " " + y(0) +
         "L" + x(1600) + " " + y(100));
+    focus.select("#renaissanceText")
+        .attr("x", x(1450))
+        .attr("y", 44)
+        .attr("text-anchor", "middle");
     focus.select("#ageOfDiscovery")
         .attr("d", "M" + x(1600) + " " + y(100) +
         "L" + x(1600) + " " + y(0) +
