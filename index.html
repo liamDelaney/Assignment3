@@ -17,13 +17,10 @@ circle:hover{
     opacity: 0.5;
 }
 
-#divContainer{
-    max-width: 100%;
-}
 </style>
 </head>
 <body>
-    <div id="visContainer"></div>
+
 <script>
 //set Scales and paths
 var x = d3.scaleLinear().range([0, 1350]),
@@ -39,7 +36,7 @@ var brush = d3.brushX()
     .extent([[0, 90], [1350, 160]])
     .on("brush", select);
 
-var svg = d3.select("#visContainer").append("svg")
+var svg = d3.select("body").append("svg")
     .attr("width", 1800)
     .attr("height", 800);
 
@@ -57,40 +54,57 @@ var context = svg.append("g")
     .attr("class", "context")
     .attr("transform", "translate(" + 50 + "," + 610 + ")");
 
+// tooltip
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
 //Figure Info Text
+// changed y to -20 so it does not appear on load
+
 svg.append("text")
     .attr("id", "FigureName")
-    .attr("x", 1450)
-    .attr("y", 600)
+    //.attr("x", 1450)
+    //.attr("y", 600)
+    .attr("y", -20)
     .text("Name:")
+    .attr("font-family", "sans-serif")
     .style("font-size", "14pt");
 
 svg.append("text")
     .attr("id", "BirthCountry")
-    .attr("x", 1450)
-    .attr("y", 620)
+    //.attr("x", 1450)
+    //.attr("y", 620)
+    .attr("y", -20)
     .text("Country:")
+    .attr("font-family", "sans-serif")
     .style("font-size", "14pt");
 
 svg.append("text")
     .attr("id", "Inventory")
-    .attr("x", 1450)
-    .attr("y", 640)
+    //.attr("x", 1450)
+    //.attr("y", 640)
+    .attr("y", -20)
     .text("Field: ")
+    .attr("font-family", "sans-serif")
     .style("font-size", "14pt");
     
 svg.append("text")
     .attr("id", "Index")
-    .attr("x", 1450)
-    .attr("y", 660)
+    //.attr("x", 1450)
+    //.attr("y", 660)
+    .attr("y", -20)
     .text("Significance Rating: ")
+    .attr("font-family", "sans-serif")
     .style("font-size", "14pt");
     
 svg.append("text")
     .attr("id", "Year")
-    .attr("x", 1450)
-    .attr("y", 680)
+    //.attr("x", 1450)
+    //.attr("y", 680)
+    .attr("y", -20)
     .text("Floruit: ")
+    .attr("font-family", "sans-serif")
     .style("font-size", "14pt");
     
 //primary scatter plot    
@@ -245,9 +259,11 @@ var modernText2 = focus.append("text")
     .attr("font-family", "sans-serif")
     .attr("font-size", "18px")
     .attr("fill", "lightsteelblue");
+
+
     
 // add figures to main chart
- var dots = focus.append("g");
+var dots = focus.append("g");
     dots.attr("clip-path", "url(#clip)");
     dots.selectAll("dot")
         .data(data)
@@ -272,12 +288,119 @@ var modernText2 = focus.append("text")
         .attr("cx", function(d) { return x(d.Fl); })
         .attr("cy", function(d) { return y(d.Index); })
         .on("mouseover", function (d) {
-			svg.select("#FigureName").text("Name: " + d.Name);
+			svg.select("#FigureName").text("Name: " + d.Name)
+                .attr("font-family", "sans-serif")
+                .attr("x", x(d.Fl) + 50)
+                .attr("y", y(d.Index) - 90)
+                .style("opacity", .5)
+                .style("fill", function(){
+                    if(d.Inventory == "Literature"){
+                        return 'Blue';
+                    }
+                    else if(d.Inventory == "Philosophy"){
+                        return 'Red';
+                    }
+                    else if(d.Inventory == "Art"){
+                        return 'Green';
+                    }
+                    else if(d.Inventory == "Music"){
+                        return 'Orange';
+                    }
+                });
             svg.select("#BirthCountry").text("Country: " + d.BirthCountry)
-            svg.select("#Inventory").text("Field: " + d.Inventory);
-            svg.select("#Index").text("Significance Rating: " + d.Index);
-            svg.select("#Year").text("Floruit: " + d.Fl);
+                .attr("font-family", "sans-serif")
+                .attr("x", x(d.Fl) + 50)
+                .attr("y", y(d.Index) - 70)
+                .style("opacity", .5)
+                .style("fill", function(){
+                    if(d.Inventory == "Literature"){
+                        return 'Blue';
+                    }
+                    else if(d.Inventory == "Philosophy"){
+                        return 'Red';
+                    }
+                    else if(d.Inventory == "Art"){
+                        return 'Green';
+                    }
+                    else if(d.Inventory == "Music"){
+                        return 'Orange';
+                    }
+                });
+            svg.select("#Inventory").text("Field: " + d.Inventory)
+            .attr("font-family", "sans-serif")
+                .attr("x", x(d.Fl) + 50)
+                .attr("y", y(d.Index) - 50)
+                .style("opacity", .5)
+                .style("fill", function(){
+                    if(d.Inventory == "Literature"){
+                        return 'Blue';
+                    }
+                    else if(d.Inventory == "Philosophy"){
+                        return 'Red';
+                    }
+                    else if(d.Inventory == "Art"){
+                        return 'Green';
+                    }
+                    else if(d.Inventory == "Music"){
+                        return 'Orange';
+                    }
+                });
+            svg.select("#Index").text("Significance Rating: " + d.Index)
+                .attr("font-family", "sans-serif")
+                .attr("x", x(d.Fl) + 50)
+                .attr("y", y(d.Index) - 30)
+                .style("opacity", .5)
+                .style("fill", function(){
+                    if(d.Inventory == "Literature"){
+                        return 'Blue';
+                    }
+                    else if(d.Inventory == "Philosophy"){
+                        return 'Red';
+                    }
+                    else if(d.Inventory == "Art"){
+                        return 'Green';
+                    }
+                    else if(d.Inventory == "Music"){
+                        return 'Orange';
+                    }
+                });
+            svg.select("#Year").text("Floruit: " + d.Fl)
+                .attr("font-family", "sans-serif")
+                .attr("x", x(d.Fl) + 50)
+                .attr("y", y(d.Index) - 10)
+                .style("opacity", .5)
+                .style("fill", function(){
+                    if(d.Inventory == "Literature"){
+                        return 'Blue';
+                    }
+                    else if(d.Inventory == "Philosophy"){
+                        return 'Red';
+                    }
+                    else if(d.Inventory == "Art"){
+                        return 'Green';
+                    }
+                    else if(d.Inventory == "Music"){
+                        return 'Orange';
+                    }
+                });
 		})
+        .on("mouseout", function (d) {
+			svg.select("#FigureName")
+                .attr("x", 0)
+                .attr("y", -20);
+            svg.select("#BirthCountry")
+                .attr("x", 0)
+                .attr("y", -20);
+            svg.select("#Inventory")
+                .attr("x", 0)
+                .attr("y", -20);
+            svg.select("#Index")
+                .attr("x", 0)
+                .attr("y", -20);
+            svg.select("#Year")
+                .attr("x", 0)
+                .attr("y", -20);
+		});
     
 
     
@@ -295,6 +418,7 @@ focus.append("text")
       .attr("y", -50)
       .attr("x", -285)
       .attr("dy", "1em")
+      .attr("font-family", "sans-serif")
       .style("text-anchor", "middle")
       .text("Significance");  
     
@@ -312,6 +436,7 @@ svg.append("text")
       .attr("transform",
             "translate(725,800)")
       .style("text-anchor", "middle")
+      .attr("font-family", "sans-serif")
       .text("Year");
         
 context.append("g")
