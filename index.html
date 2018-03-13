@@ -16,10 +16,14 @@ circle:hover{
     stroke-width: 2px;
     opacity: 0.5;
 }
+
+#divContainer{
+    max-width: 100%;
+}
 </style>
 </head>
 <body>
-
+    <div id="visContainer"></div>
 <script>
 //set Scales and paths
 var x = d3.scaleLinear().range([0, 1350]),
@@ -35,7 +39,7 @@ var brush = d3.brushX()
     .extent([[0, 90], [1350, 160]])
     .on("brush", select);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#visContainer").append("svg")
     .attr("width", 1800)
     .attr("height", 800);
 
@@ -103,10 +107,34 @@ var archaicGreece = focus.append("path")
     .style("opacity", .1)
     .attr('id', 'archaicGreece');
 
+var archaicGreeceText1 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'archaicGreeceText1')
+    .text("Archaic")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
+var archaicGreeceText2 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'archaicGreeceText2')
+    .text("Greece")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
 var classicalAntiquity = focus.append("path")
     .attr("clip-path", "url(#clip)")
     .style("opacity", .05)
     .attr('id', 'classicalAntiquity');
+
+var classicalAntiquityText = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'classicalAntiquityText')
+    .text("Classical Antiquity")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
     
 var darkAges = focus.append("path")
     .attr("clip-path", "url(#clip)")
@@ -257,11 +285,23 @@ function select() {
         "L" + x(-700) + " " + y(0) +
         "L" + x(-480) + " " + y(0) +
         "L" + x(-480) + " " + y(100));
+    focus.select("#archaicGreeceText1")
+        .attr("x", x(-590))
+        .attr("y", 34)
+        .attr("text-anchor", "middle");
+    focus.select("#archaicGreeceText2")
+        .attr("x", x(-590))
+        .attr("y", 54)
+        .attr("text-anchor", "middle");
     focus.select("#classicalAntiquity")
         .attr("d", "M" + x(-480) + " " + y(100) +
         "L" + x(-480) + " " + y(0) +
         "L" + x(476) + " " + y(0) +
         "L" + x(476) + " " + y(100));
+    focus.select("#classicalAntiquityText")
+        .attr("x", x(-2))
+        .attr("y", 44)
+        .attr("text-anchor", "middle");
     focus.select("#darkAges")
         .attr("d", "M" + x(476) + " " + y(100) +
         "L" + x(476) + " " + y(0) +
