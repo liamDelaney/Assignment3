@@ -188,15 +188,63 @@ var ageOfDiscovery = focus.append("path")
     .style("opacity", .05)
     .attr('id', 'ageOfDiscovery');
 
+var discoveryText1 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'discoveryText1')
+    .text("Age of")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
+var discoveryText2 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'discoveryText2')
+    .text("Discovery")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
 var industrialRevolution = focus.append("path")
     .attr("clip-path", "url(#clip)")
     .style("opacity", .1)
     .attr('id', 'industrialRevolution');
 
+var industrialText1 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'industrialText1')
+    .text("Indust")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
+var industrialText2 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'industrialText2')
+    .text("Rev")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
 var modernEra = focus.append("path")
     .attr("clip-path", "url(#clip)")
     .style("opacity", .05)
     .attr('id', 'modernEra');
+
+var modernText1 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'modernText1')
+    .text("Mod")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
+
+var modernText2 = focus.append("text")
+    .attr("clip-path", "url(#clip)")
+    .attr('id', 'modernText2')
+    .text("ern")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("fill", "lightsteelblue");
     
 // add figures to main chart
  var dots = focus.append("g");
@@ -370,16 +418,40 @@ function select() {
         "L" + x(1600) + " " + y(0) +
         "L" + x(1770) + " " + y(0) +
         "L" + x(1770) + " " + y(100));
+    focus.select("#discoveryText1")
+        .attr("x", x(1685))
+        .attr("y", 34)
+        .attr("text-anchor", "middle");
+    focus.select("#discoveryText2")
+        .attr("x", x(1685))
+        .attr("y", 54)
+        .attr("text-anchor", "middle");
     focus.select("#industrialRevolution")
         .attr("d", "M" + x(1770) + " " + y(100) +
         "L" + x(1770) + " " + y(0) +
         "L" + x(1870) + " " + y(0) +
         "L" + x(1870) + " " + y(100));
+    focus.select("#industrialText1")
+        .attr("x", x(1820))
+        .attr("y", 34)
+        .attr("text-anchor", "middle");
+    focus.select("#industrialText2")
+        .attr("x", x(1820))
+        .attr("y", 54)
+        .attr("text-anchor", "middle");
     focus.select("#modernEra")
         .attr("d", "M" + x(1870) + " " + y(100) +
         "L" + x(1870) + " " + y(0) +
         "L" + x(1950) + " " + y(0) +
         "L" + x(1950) + " " + y(100));
+    focus.select("#modernText1")
+        .attr("x", x(1910))
+        .attr("y", 34)
+        .attr("text-anchor", "middle");
+    focus.select("#modernText2")
+        .attr("x", x(1910))
+        .attr("y", 54)
+        .attr("text-anchor", "middle");
     
     //rescale figures
     focus.selectAll(".dot")
