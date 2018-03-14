@@ -440,7 +440,7 @@
                 .attr("x", 1430)
                 .attr("y", 320)
                 .attr("width", 220)
-                .attr("height", 286)
+                .attr("height", 340)
                 .attr("fill", "white")
                 .attr("stroke", "lightsteelblue");
 
@@ -468,74 +468,74 @@
                     };
                     focus.selectAll(".dot")
                         .remove();
-                    if(showPhil) {
+                    if (showPhil) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "red");
                         focus.selectAll(".dot")
-                        .data(data)
-                        .enter().append("circle")
-                        .attr('class', 'dot')
-                        .filter(function (d) {
-                            return d.Inventory == 'Philosophy';
-                        })
-                        .attr("r", 5)
-                        .style("opacity", .5)
-                        .style("fill", function (d) {
-                            if (d.Inventory == "Literature") {
-                                return 'Blue';
-                            }
-                            else if (d.Inventory == "Philosophy") {
-                                return 'Red';
-                            }
-                            else if (d.Inventory == "Art") {
-                                return 'Green';
-                            }
-                            else if (d.Inventory == "Music") {
-                                return 'Orange';
-                            }
-                        })
-                        .attr("cx", function (d) { return x(d.Fl); })
-                        .attr("cy", function (d) { return y(d.Index); })
-                        .on("mouseover", function (d) {
-                            //try tooltip
-                            tooltip.transition()
-                                .duration(200)
-                                .style("opacity", .85);
-                            tooltip.html("Name: " + d.Name + "<br/>" +
-                                "Country: " + d.BirthCountry + "<br/>" +
-                                "Field: " + d.Inventory + "<br/>" +
-                                "Significance Rating: " + d.Index + "<br/>" +
-                                "Floruit: " + d.Fl
-                            )
-                                .style("left", (d3.event.pageX + 10) + "px")
-                                .style("top", function () {
-                                    if (d.Index == 100) {
-                                        return (d3.event.pageY + 5) + "px";
-                                    } else {
-                                        return (d3.event.pageY - 115) + "px";
-                                    }
-                                })
-                                .style("color", function () {
-                                    if (d.Inventory == "Literature") {
-                                        return 'Blue';
-                                    }
-                                    else if (d.Inventory == "Philosophy") {
-                                        return 'Red';
-                                    }
-                                    else if (d.Inventory == "Art") {
-                                        return 'Green';
-                                    }
-                                    else if (d.Inventory == "Music") {
-                                        return 'Orange';
-                                    }
-                                });
-                        })
-                        .on("mouseout", function (d) {
-                            tooltip.transition()
-                                .duration(400)
-                                .style("opacity", 0);
-                        });
+                            .data(data)
+                            .enter().append("circle")
+                            .attr('class', 'dot')
+                            .filter(function (d) {
+                                return d.Inventory == 'Philosophy';
+                            })
+                            .attr("r", 5)
+                            .style("opacity", .5)
+                            .style("fill", function (d) {
+                                if (d.Inventory == "Literature") {
+                                    return 'Blue';
+                                }
+                                else if (d.Inventory == "Philosophy") {
+                                    return 'Red';
+                                }
+                                else if (d.Inventory == "Art") {
+                                    return 'Green';
+                                }
+                                else if (d.Inventory == "Music") {
+                                    return 'Orange';
+                                }
+                            })
+                            .attr("cx", function (d) { return x(d.Fl); })
+                            .attr("cy", function (d) { return y(d.Index); })
+                            .on("mouseover", function (d) {
+                                //try tooltip
+                                tooltip.transition()
+                                    .duration(200)
+                                    .style("opacity", .85);
+                                tooltip.html("Name: " + d.Name + "<br/>" +
+                                    "Country: " + d.BirthCountry + "<br/>" +
+                                    "Field: " + d.Inventory + "<br/>" +
+                                    "Significance Rating: " + d.Index + "<br/>" +
+                                    "Floruit: " + d.Fl
+                                )
+                                    .style("left", (d3.event.pageX + 10) + "px")
+                                    .style("top", function () {
+                                        if (d.Index == 100) {
+                                            return (d3.event.pageY + 5) + "px";
+                                        } else {
+                                            return (d3.event.pageY - 115) + "px";
+                                        }
+                                    })
+                                    .style("color", function () {
+                                        if (d.Inventory == "Literature") {
+                                            return 'Blue';
+                                        }
+                                        else if (d.Inventory == "Philosophy") {
+                                            return 'Red';
+                                        }
+                                        else if (d.Inventory == "Art") {
+                                            return 'Green';
+                                        }
+                                        else if (d.Inventory == "Music") {
+                                            return 'Orange';
+                                        }
+                                    });
+                            })
+                            .on("mouseout", function (d) {
+                                tooltip.transition()
+                                    .duration(400)
+                                    .style("opacity", 0);
+                            });
                     }
                 });
 
@@ -571,74 +571,74 @@
                     };
                     focus.selectAll(".dot")
                         .remove();
-                    if(showLit) {
+                    if (showLit) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "blue");
                         focus.selectAll(".dot")
-                        .data(data)
-                        .enter().append("circle")
-                        .attr('class', 'dot')
-                        .filter(function (d) {
-                            return d.Inventory == 'Literature';
-                        })
-                        .attr("r", 5)
-                        .style("opacity", .5)
-                        .style("fill", function (d) {
-                            if (d.Inventory == "Literature") {
-                                return 'Blue';
-                            }
-                            else if (d.Inventory == "Philosophy") {
-                                return 'Red';
-                            }
-                            else if (d.Inventory == "Art") {
-                                return 'Green';
-                            }
-                            else if (d.Inventory == "Music") {
-                                return 'Orange';
-                            }
-                        })
-                        .attr("cx", function (d) { return x(d.Fl); })
-                        .attr("cy", function (d) { return y(d.Index); })
-                        .on("mouseover", function (d) {
-                            //try tooltip
-                            tooltip.transition()
-                                .duration(200)
-                                .style("opacity", .85);
-                            tooltip.html("Name: " + d.Name + "<br/>" +
-                                "Country: " + d.BirthCountry + "<br/>" +
-                                "Field: " + d.Inventory + "<br/>" +
-                                "Significance Rating: " + d.Index + "<br/>" +
-                                "Floruit: " + d.Fl
-                            )
-                                .style("left", (d3.event.pageX + 10) + "px")
-                                .style("top", function () {
-                                    if (d.Index == 100) {
-                                        return (d3.event.pageY + 5) + "px";
-                                    } else {
-                                        return (d3.event.pageY - 115) + "px";
-                                    }
-                                })
-                                .style("color", function () {
-                                    if (d.Inventory == "Literature") {
-                                        return 'Blue';
-                                    }
-                                    else if (d.Inventory == "Philosophy") {
-                                        return 'Red';
-                                    }
-                                    else if (d.Inventory == "Art") {
-                                        return 'Green';
-                                    }
-                                    else if (d.Inventory == "Music") {
-                                        return 'Orange';
-                                    }
-                                });
-                        })
-                        .on("mouseout", function (d) {
-                            tooltip.transition()
-                                .duration(400)
-                                .style("opacity", 0);
-                        });
+                            .data(data)
+                            .enter().append("circle")
+                            .attr('class', 'dot')
+                            .filter(function (d) {
+                                return d.Inventory == 'Literature';
+                            })
+                            .attr("r", 5)
+                            .style("opacity", .5)
+                            .style("fill", function (d) {
+                                if (d.Inventory == "Literature") {
+                                    return 'Blue';
+                                }
+                                else if (d.Inventory == "Philosophy") {
+                                    return 'Red';
+                                }
+                                else if (d.Inventory == "Art") {
+                                    return 'Green';
+                                }
+                                else if (d.Inventory == "Music") {
+                                    return 'Orange';
+                                }
+                            })
+                            .attr("cx", function (d) { return x(d.Fl); })
+                            .attr("cy", function (d) { return y(d.Index); })
+                            .on("mouseover", function (d) {
+                                //try tooltip
+                                tooltip.transition()
+                                    .duration(200)
+                                    .style("opacity", .85);
+                                tooltip.html("Name: " + d.Name + "<br/>" +
+                                    "Country: " + d.BirthCountry + "<br/>" +
+                                    "Field: " + d.Inventory + "<br/>" +
+                                    "Significance Rating: " + d.Index + "<br/>" +
+                                    "Floruit: " + d.Fl
+                                )
+                                    .style("left", (d3.event.pageX + 10) + "px")
+                                    .style("top", function () {
+                                        if (d.Index == 100) {
+                                            return (d3.event.pageY + 5) + "px";
+                                        } else {
+                                            return (d3.event.pageY - 115) + "px";
+                                        }
+                                    })
+                                    .style("color", function () {
+                                        if (d.Inventory == "Literature") {
+                                            return 'Blue';
+                                        }
+                                        else if (d.Inventory == "Philosophy") {
+                                            return 'Red';
+                                        }
+                                        else if (d.Inventory == "Art") {
+                                            return 'Green';
+                                        }
+                                        else if (d.Inventory == "Music") {
+                                            return 'Orange';
+                                        }
+                                    });
+                            })
+                            .on("mouseout", function (d) {
+                                tooltip.transition()
+                                    .duration(400)
+                                    .style("opacity", 0);
+                            });
                     }
                 });
 
@@ -674,74 +674,74 @@
                     };
                     focus.selectAll(".dot")
                         .remove();
-                    if(showArt) {
+                    if (showArt) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "green");
                         focus.selectAll(".dot")
-                        .data(data)
-                        .enter().append("circle")
-                        .attr('class', 'dot')
-                        .filter(function (d) {
-                            return d.Inventory == 'Art';
-                        })
-                        .attr("r", 5)
-                        .style("opacity", .5)
-                        .style("fill", function (d) {
-                            if (d.Inventory == "Literature") {
-                                return 'Blue';
-                            }
-                            else if (d.Inventory == "Philosophy") {
-                                return 'Red';
-                            }
-                            else if (d.Inventory == "Art") {
-                                return 'Green';
-                            }
-                            else if (d.Inventory == "Music") {
-                                return 'Orange';
-                            }
-                        })
-                        .attr("cx", function (d) { return x(d.Fl); })
-                        .attr("cy", function (d) { return y(d.Index); })
-                        .on("mouseover", function (d) {
-                            //try tooltip
-                            tooltip.transition()
-                                .duration(200)
-                                .style("opacity", .85);
-                            tooltip.html("Name: " + d.Name + "<br/>" +
-                                "Country: " + d.BirthCountry + "<br/>" +
-                                "Field: " + d.Inventory + "<br/>" +
-                                "Significance Rating: " + d.Index + "<br/>" +
-                                "Floruit: " + d.Fl
-                            )
-                                .style("left", (d3.event.pageX + 10) + "px")
-                                .style("top", function () {
-                                    if (d.Index == 100) {
-                                        return (d3.event.pageY + 5) + "px";
-                                    } else {
-                                        return (d3.event.pageY - 115) + "px";
-                                    }
-                                })
-                                .style("color", function () {
-                                    if (d.Inventory == "Literature") {
-                                        return 'Blue';
-                                    }
-                                    else if (d.Inventory == "Philosophy") {
-                                        return 'Red';
-                                    }
-                                    else if (d.Inventory == "Art") {
-                                        return 'Green';
-                                    }
-                                    else if (d.Inventory == "Music") {
-                                        return 'Orange';
-                                    }
-                                });
-                        })
-                        .on("mouseout", function (d) {
-                            tooltip.transition()
-                                .duration(400)
-                                .style("opacity", 0);
-                        });
+                            .data(data)
+                            .enter().append("circle")
+                            .attr('class', 'dot')
+                            .filter(function (d) {
+                                return d.Inventory == 'Art';
+                            })
+                            .attr("r", 5)
+                            .style("opacity", .5)
+                            .style("fill", function (d) {
+                                if (d.Inventory == "Literature") {
+                                    return 'Blue';
+                                }
+                                else if (d.Inventory == "Philosophy") {
+                                    return 'Red';
+                                }
+                                else if (d.Inventory == "Art") {
+                                    return 'Green';
+                                }
+                                else if (d.Inventory == "Music") {
+                                    return 'Orange';
+                                }
+                            })
+                            .attr("cx", function (d) { return x(d.Fl); })
+                            .attr("cy", function (d) { return y(d.Index); })
+                            .on("mouseover", function (d) {
+                                //try tooltip
+                                tooltip.transition()
+                                    .duration(200)
+                                    .style("opacity", .85);
+                                tooltip.html("Name: " + d.Name + "<br/>" +
+                                    "Country: " + d.BirthCountry + "<br/>" +
+                                    "Field: " + d.Inventory + "<br/>" +
+                                    "Significance Rating: " + d.Index + "<br/>" +
+                                    "Floruit: " + d.Fl
+                                )
+                                    .style("left", (d3.event.pageX + 10) + "px")
+                                    .style("top", function () {
+                                        if (d.Index == 100) {
+                                            return (d3.event.pageY + 5) + "px";
+                                        } else {
+                                            return (d3.event.pageY - 115) + "px";
+                                        }
+                                    })
+                                    .style("color", function () {
+                                        if (d.Inventory == "Literature") {
+                                            return 'Blue';
+                                        }
+                                        else if (d.Inventory == "Philosophy") {
+                                            return 'Red';
+                                        }
+                                        else if (d.Inventory == "Art") {
+                                            return 'Green';
+                                        }
+                                        else if (d.Inventory == "Music") {
+                                            return 'Orange';
+                                        }
+                                    });
+                            })
+                            .on("mouseout", function (d) {
+                                tooltip.transition()
+                                    .duration(400)
+                                    .style("opacity", 0);
+                            });
                     }
                 });
 
@@ -777,17 +777,150 @@
                     };
                     focus.selectAll(".dot")
                         .remove();
-                    if(showMusic) {
+                    if (showMusic) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "orange");
                         focus.selectAll(".dot")
+                            .data(data)
+                            .enter().append("circle")
+                            .attr('class', 'dot')
+                            .filter(function (d) {
+                                return d.Inventory == 'Music';
+                            })
+                            .attr("r", 5)
+                            .style("opacity", .5)
+                            .style("fill", function (d) {
+                                if (d.Inventory == "Literature") {
+                                    return 'Blue';
+                                }
+                                else if (d.Inventory == "Philosophy") {
+                                    return 'Red';
+                                }
+                                else if (d.Inventory == "Art") {
+                                    return 'Green';
+                                }
+                                else if (d.Inventory == "Music") {
+                                    return 'Orange';
+                                }
+                            })
+                            .attr("cx", function (d) { return x(d.Fl); })
+                            .attr("cy", function (d) { return y(d.Index); })
+                            .on("mouseover", function (d) {
+                                //try tooltip
+                                tooltip.transition()
+                                    .duration(200)
+                                    .style("opacity", .85);
+                                tooltip.html("Name: " + d.Name + "<br/>" +
+                                    "Country: " + d.BirthCountry + "<br/>" +
+                                    "Field: " + d.Inventory + "<br/>" +
+                                    "Significance Rating: " + d.Index + "<br/>" +
+                                    "Floruit: " + d.Fl
+                                )
+                                    .style("left", (d3.event.pageX + 10) + "px")
+                                    .style("top", function () {
+                                        if (d.Index == 100) {
+                                            return (d3.event.pageY + 5) + "px";
+                                        } else {
+                                            return (d3.event.pageY - 115) + "px";
+                                        }
+                                    })
+                                    .style("color", function () {
+                                        if (d.Inventory == "Literature") {
+                                            return 'Blue';
+                                        }
+                                        else if (d.Inventory == "Philosophy") {
+                                            return 'Red';
+                                        }
+                                        else if (d.Inventory == "Art") {
+                                            return 'Green';
+                                        }
+                                        else if (d.Inventory == "Music") {
+                                            return 'Orange';
+                                        }
+                                    });
+                            })
+                            .on("mouseout", function (d) {
+                                tooltip.transition()
+                                    .duration(400)
+                                    .style("opacity", 0);
+                            });
+                    }
+                });
+
+            svg.append("text")
+                .attr("x", 1520)
+                .attr("y", 565)
+                .attr("font-size", 16)
+                .attr("fill", "orange")
+                .attr("opacity", 0.7)
+                .text("Music");
+
+            // showall
+            svg.append("rect")
+                .attr("x", 1470)
+                .attr("y", 595)
+                .attr("width", 15)
+                .attr("height", 15)
+                .attr("class", "showAll")
+                .attr("stroke", "red")
+                .attr("stroke-width", "0px")
+                .attr("fill", "red")
+                .attr("opacity", 0.7);
+            svg.append("rect")
+                .attr("x", 1470)
+                .attr("y", 610)
+                .attr("width", 15)
+                .attr("height", 15)
+                .attr("class", "showAll")
+                .attr("stroke", "blue")
+                .attr("stroke-width", "0px")
+                .attr("fill", "blue")
+                .attr("opacity", 0.7);
+            svg.append("rect")
+                .attr("x", 1485)
+                .attr("y", 595)
+                .attr("width", 15)
+                .attr("height", 15)
+                .attr("class", "showAll")
+                .attr("stroke", "green")
+                .attr("stroke-width", "0px")
+                .attr("fill", "green")
+                .attr("opacity", 0.7);
+            svg.append("rect")
+                .attr("x", 1485)
+                .attr("y", 610)
+                .attr("width", 15)
+                .attr("height", 15)
+                .attr("class", "showAll")
+                .attr("stroke", "orange")
+                .attr("stroke-width", "0px")
+                .attr("fill", "orange")
+                .attr("opacity", 0.7);
+
+            svg.append("text")
+                .attr("x", 1520)
+                .attr("y", 615)
+                .attr("font-size", 16)
+                .attr("fill", "brown")
+                .attr("opacity", 0.7)
+                .text("Show All");
+
+            svg.append("text")
+                .attr("x", 1540)
+                .attr("y", 365)
+                .attr("text-anchor", "middle")
+                .attr("font-size", 20)
+                .text("Filter by Field");
+
+            svg.selectAll(".showAll")
+                .on("click", function () {
+                    focus.selectAll(".dot").remove();
+                    svg.selectAll(".filterrect").attr("fill", "white");
+                    focus.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
                         .attr('class', 'dot')
-                        .filter(function (d) {
-                            return d.Inventory == 'Music';
-                        })
                         .attr("r", 5)
                         .style("opacity", .5)
                         .style("fill", function (d) {
@@ -845,24 +978,7 @@
                                 .duration(400)
                                 .style("opacity", 0);
                         });
-                    }
                 });
-
-            svg.append("text")
-                .attr("x", 1520)
-                .attr("y", 565)
-                .attr("font-size", 16)
-                .attr("fill", "orange")
-                .attr("opacity", 0.7)
-                .text("Music");
-
-            svg.append("text")
-                .attr("x", 1540)
-                .attr("y", 365)
-                .attr("text-anchor", "middle")
-                .attr("font-size", 20)
-                .text("Filter by Field");
-
 
 
             context.append("g")
