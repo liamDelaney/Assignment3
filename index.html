@@ -475,6 +475,7 @@
                         focus.selectAll(".dot")
                             .data(data)
                             .enter().append("circle")
+                            .attr("clip-path", "url(#clip)")
                             .attr('class', 'dot')
                             .filter(function (d) {
                                 return d.Inventory == 'Philosophy';
@@ -578,6 +579,7 @@
                         focus.selectAll(".dot")
                             .data(data)
                             .enter().append("circle")
+                            .attr("clip-path", "url(#clip)")
                             .attr('class', 'dot')
                             .filter(function (d) {
                                 return d.Inventory == 'Literature';
@@ -681,6 +683,7 @@
                         focus.selectAll(".dot")
                             .data(data)
                             .enter().append("circle")
+                            .attr("clip-path", "url(#clip)")
                             .attr('class', 'dot')
                             .filter(function (d) {
                                 return d.Inventory == 'Art';
@@ -784,6 +787,7 @@
                         focus.selectAll(".dot")
                             .data(data)
                             .enter().append("circle")
+                            .attr("clip-path", "url(#clip)")
                             .attr('class', 'dot')
                             .filter(function (d) {
                                 return d.Inventory == 'Music';
@@ -920,6 +924,7 @@
                     focus.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
+                        .attr("clip-path", "url(#clip)")
                         .attr('class', 'dot')
                         .attr("r", 5)
                         .style("opacity", .5)
