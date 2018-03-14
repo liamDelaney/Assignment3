@@ -466,13 +466,13 @@
                         showPhil = false;
                         d3.select(this).attr("fill", "white");
                     };
-                    svg.selectAll(".dot")
+                    focus.selectAll(".dot")
                         .remove();
                     if(showPhil) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "red");
-                        svg.selectAll(".dot")
+                        focus.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
                         .attr('class', 'dot')
@@ -569,13 +569,13 @@
                         showLit = false;
                         d3.select(this).attr("fill", "white");
                     };
-                    svg.selectAll(".dot")
+                    focus.selectAll(".dot")
                         .remove();
                     if(showLit) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "blue");
-                        svg.selectAll(".dot")
+                        focus.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
                         .attr('class', 'dot')
@@ -672,13 +672,13 @@
                         showArt = false;
                         d3.select(this).attr("fill", "white");
                     };
-                    svg.selectAll(".dot")
+                    focus.selectAll(".dot")
                         .remove();
                     if(showArt) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "green");
-                        svg.selectAll(".dot")
+                        focus.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
                         .attr('class', 'dot')
@@ -775,13 +775,13 @@
                         showMusic = false;
                         d3.select(this).attr("fill", "white");
                     };
-                    svg.selectAll(".dot")
+                    focus.selectAll(".dot")
                         .remove();
                     if(showMusic) {
                         svg.selectAll(".filterrect")
                             .attr("fill", "white");
                         d3.select(this).attr("fill", "orange");
-                        svg.selectAll(".dot")
+                        focus.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
                         .attr('class', 'dot')
