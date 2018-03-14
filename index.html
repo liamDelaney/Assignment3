@@ -1,22 +1,16 @@
 <html>
-
+<!-- intial framework for brush scroll from: https://bl.ocks.org/mbostock/34f08d5e11952a80609169b7917d4172 -->
 <head>
-    <title>Western Humanities</title>
+    <title>European Humanities</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
+        h1{
+            color: #4d4d4d;
+            
+        }
         body {
             font-family: sans-serif;
-            padding: 30px;
-        }
-
-        .line {
-            fill: none;
-            stroke: steelblue;
-            stroke-width: 2px;
-        }
-
-        .area {
-            fill: lightsteelblue;
+            padding: 20px;
         }
 
         circle:hover {
@@ -46,7 +40,7 @@
 </head>
 
 <body>
-    <h1>How Have Famous Figures Shaped Eras of History?</h1>
+    <h1>European History: Contributions in the Arts & Humanities</h1>
 
     <script>
         //set Scales and paths
@@ -107,7 +101,7 @@
                 .text("Archaic")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var archaicGreeceText2 = focus.append("text")
                 .attr("clip-path", "url(#clip)")
@@ -115,7 +109,7 @@
                 .text("Greece")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var classicalAntiquity = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -128,7 +122,7 @@
                 .text("Classical Antiquity")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var darkAges = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -141,7 +135,7 @@
                 .text("Dark Ages")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var highMiddleAges = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -154,7 +148,7 @@
                 .text("High Middle")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var highMiddleAgesText2 = focus.append("text")
                 .attr("clip-path", "url(#clip)")
@@ -162,7 +156,7 @@
                 .text("Ages")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var renaissance = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -172,10 +166,10 @@
             var renaissanceText = focus.append("text")
                 .attr("clip-path", "url(#clip)")
                 .attr('id', 'renaissanceText')
-                .text("Reinaissance")
+                .text("Renaissance")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var ageOfDiscovery = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -188,7 +182,7 @@
                 .text("Age of")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var discoveryText2 = focus.append("text")
                 .attr("clip-path", "url(#clip)")
@@ -196,7 +190,7 @@
                 .text("Discovery")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var industrialRevolution = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -209,7 +203,7 @@
                 .text("Indust")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var industrialText2 = focus.append("text")
                 .attr("clip-path", "url(#clip)")
@@ -217,7 +211,7 @@
                 .text("Rev")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var modernEra = focus.append("path")
                 .attr("clip-path", "url(#clip)")
@@ -230,7 +224,7 @@
                 .text("Mod")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
             var modernText2 = focus.append("text")
                 .attr("clip-path", "url(#clip)")
@@ -238,7 +232,7 @@
                 .text("ern")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "18px")
-                .attr("fill", "lightsteelblue");
+                .attr("fill", "#81a1ca");
 
 
 
@@ -368,6 +362,7 @@
                 .attr("y", 50)
                 .attr("text-anchor", "middle")
                 .attr("font-size", 20)
+                .attr("fill", "#4d4d4d")
                 .text("Field of Study");
 
             svg.append("rect")
@@ -914,6 +909,7 @@
                 .attr("x", 1540)
                 .attr("y", 365)
                 .attr("text-anchor", "middle")
+                .attr("fill", "#4d4d4d")
                 .attr("font-size", 20)
                 .text("Filter by Field");
 
@@ -1022,20 +1018,29 @@
 
             context.append("path")
                 .datum(data)
-                .attr("class", "line")
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", "2px")
                 .attr("d", trendline);
 
             context.append("path")
                 .datum(data)
-                .attr("class", "area")
+                .attr("fill", "lightsteelblue")
                 .attr("d", area);
         });
 
         //redraw everything on selection
         function select() {
             var selection = d3.event.selection;
-            x.domain(selection.map(x2.invert, x2));
-
+            
+            if(selection.map(x2.invert, x2)[1] - selection.map(x2.invert, x2)[0] <= 10){
+                x.domain(savSelection.map(x2.invert, x2));
+            }
+            else{
+                var savSelection = selection;
+                x.domain(selection.map(x2.invert, x2));
+            }
+            
             //rescale eras
             focus.select("#archaicGreece")
                 .attr("d", "M" + x(-700) + " " + y(100) +
@@ -1129,7 +1134,26 @@
                 .attr("x", x(1910))
                 .attr("y", 54)
                 .attr("text-anchor", "middle");
-
+            if(selection.map(x2.invert, x2)[1] - selection.map(x2.invert, x2)[0] <= 1400){
+                focus.select("#industrialText1")
+                    .text("Industrial");
+                focus.select("#industrialText2")
+                    .text("Revolution");
+                focus.select("#modernText1")
+                    .text("Modern");
+                focus.select("#modernText2")
+                    .text("");
+            }
+            else{
+                focus.select("#industrialText1")
+                    .text("Indust");
+                focus.select("#industrialText2")
+                    .text("Rev");
+                focus.select("#modernText1")
+                .text("Mod");
+                focus.select("#modernText2")
+                .text("ern");
+            }
             //rescale figures
             focus.selectAll(".dot")
                 .attr("cx", function (d) { return x(d.Fl); })
